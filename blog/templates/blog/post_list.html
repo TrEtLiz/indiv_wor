@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Blog{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Post List -->
+    <section class="col-md-8 post-list">
+        {% for post in page_obj %}
+        <article class="post mb-4 card shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-subtitle text-muted">Published: {{ post.publish }}</p>
+                <p class="card-text">{{ post.body }}</p>
+                <div class="comments">
+                    <h3>Комментарии</h3>
+                    {% for comment in post.comments.all %}
+                    <div class="comment mb-2">
+                        <p><strong>{{ comment.author }}</strong> сказал: {{ comment.body }}</p>
+                        <p class="text-muted">Опубликовано: {{ comment.created }}</p>
+                    </div>
+                    {% empty %}
+                    <p>Нет комментариев.</p>
+                    {% endfor %}
+                </div>
+                <div class="comment-form mt-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{ post.id }}" class="p-2">
+                        {{ comment_form.as_p }}
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <p>No posts available.</p>
+        {% endfor %}
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </section>
+    <!-- Sidebar -->
+    <aside class="col-md-4">
+        {% include 'blog/sidebar_images.html' %}
+{#        {% include 'sidebar_contacts.html' %}#}
+    </aside>
+
+
+</div>
+{% endblock %}

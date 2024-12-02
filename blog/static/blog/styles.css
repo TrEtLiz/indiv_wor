@@ -1,0 +1,54 @@
+/* Светлая тема */
+body.light-theme {
+    background-color: #f8f9fa; /* Используем стандартный светлый фон Bootstrap */
+    color: #212529; /* Цвет текста из Bootstrap */
+}
+
+.header.light-theme {
+    background-color: #ffffff; /* Белый фон */
+    color: #212529; /* Тёмный текст */
+}
+
+/* Тёмная тема */
+body.dark-theme {
+    background-color: #343a40; /* Фон темной темы из Bootstrap */
+    color: #f8f9fa; /* Светлый текст из Bootstrap */
+}
+
+.header.dark-theme {
+    background-color: #212529; /* Тёмный фон */
+    color: #f8f9fa; /* Белый текст */
+}
+
+/* Карточки */
+body.light-theme .card {
+    background-color: #ffffff; /* Белый фон для карточек */
+    color: #212529; /* Тёмный текст */
+    border: 1px solid #dee2e6; /* Рамка в стиле Bootstrap */
+}
+
+body.dark-theme .card {
+    background-color: #343a40; /* Темный фон для карточек */
+    color: #f8f9fa; /* Светлый текст */
+    border: 1px solid #495057; /* Более темная рамка */
+}
+
+.card-title {
+    color: inherit; /* Используем цвет от родителя */
+    font-size: 1.25rem; /* Размер заголовка в стиле Bootstrap */
+}
+
+.card-text {
+    color: inherit; /* Используем цвет от родителя */
+}
+
+/* Дополнительная стилизация */
+body.light-theme .btn {
+    background-color: #5f5f61; /* Цвет кнопки Bootstrap */
+    color: #fff;
+}
+
+body.dark-theme .btn {
+    background-color: #6c757d; /* Тёмная кнопка */
+    color: #fff;
+}
